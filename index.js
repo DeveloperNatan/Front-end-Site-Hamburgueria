@@ -56,7 +56,7 @@ async function displayburguers() {
   }
 }
 
-async function displaycombos() {
+/*async function displaycombos() {
   try {
     const url = "http://localhost:2929/api/produtoscombos";
     const response = await fetch(url);
@@ -96,9 +96,9 @@ async function displaycombos() {
   } catch (error) {
     console.error("Error fetching burguers", error);
   }
-}
+}*/
 
-async function displayporcoes() {
+/*async function displayporcoes() {
   try {
     const url = "http://localhost:2929/api/produtosporcoes";
     const response = await fetch(url);
@@ -138,9 +138,9 @@ async function displayporcoes() {
   } catch (error) {
     console.error("Error fetching burguers", error);
   }
-}
+}*/
 
-async function displaybebidas() {
+/*async function displaybebidas() {
   try {
     const url = "http://localhost:2929/api/produtosbebidas";
     const response = await fetch(url);
@@ -180,15 +180,15 @@ async function displaybebidas() {
   } catch (error) {
     console.error("Error fetching bebidas", error);
   }
-}
+}*/
 
 document.addEventListener("DOMContentLoaded", displayburguers);
 
-document.addEventListener("DOMContentLoaded", displaycombos);
+// document.addEventListener("DOMContentLoaded", displaycombos);
 
-document.addEventListener("DOMContentLoaded", displayporcoes);
+// document.addEventListener("DOMContentLoaded", displayporcoes);
 
-document.addEventListener("DOMContentLoaded", displaybebidas);
+// document.addEventListener("DOMContentLoaded", displaybebidas);
 
 // abrir carrinho
 cartBtn.addEventListener("click", function () {
