@@ -16,7 +16,7 @@ let cart = [];
 
 async function displayburguers() {
   try {
-    const url = "http://localhost:2929/api/produtos";
+    const url = "https://deploy-node-uoxr.onrender.com/api/produtos";
     const response = await fetch(url);
 
     if (!response.ok) {
