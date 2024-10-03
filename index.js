@@ -26,31 +26,33 @@ async function displayburguers() {
 
     const menuBurguer = document.getElementById("menu-burguers");
 
-    Burguers.forEach((burger) => {
-      const burgerItem = document.createElement("div");
-      burgerItem.className = "flex gap-2";
+    if (Burguers.categoria = "burger") {
+      Burguers.forEach((burger) => {
+        const burgerItem = document.createElement("div");
+        burgerItem.className = "flex gap-2";
 
-      burgerItem.innerHTML = `
-  <div class="w-full ">
-    <img src="./assets/hamb-2.png" alt="${burger.nome}"
-      class="img-custom-size-burguer rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-    <p class="font-bold">${burger.nome}</p>
-    <p class="text-sm">${burger.descricao}</p>
-    <div class="flex flex-col mt-auto" id="obs">
-            <label for="cart-observation-${burger.id}" class="font-bold text-red-600" id="label-obs">Observação:</label>
-            <input type="text" id="cart-observation-${burger.id}" name="observation" placeholder="Ex: sem cebola, hambúrguer mal passado">
-          </div>
-    <div class="flex items-center gap-2 justify-between">
-      <p class="font-bold text-lg">R$ ${burger.preco}</p>
-      <button class="bg-gray-900 px-7 rounded add-to-cart-btn" data-name="${burger.nome}" data-price="${burger.preco}" data-id="${burger.id}">
-        <i class="fa fa-cart-plus text-3xl"></i>
-      </button>
+        burgerItem.innerHTML = `
+    <div class="w-full ">
+      <img src="./assets/hamb-2.png" alt="${burger.nome}"
+        class="img-custom-size-burguer rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
+      <p class="font-bold">${burger.nome}</p>
+      <p class="text-sm">${burger.descricao}</p>
+      <div class="flex flex-col mt-auto" id="obs">
+              <label for="cart-observation-${burger.id}" class="font-bold text-red-600" id="label-obs">Observação:</label>
+              <input type="text" id="cart-observation-${burger.id}" name="observation" placeholder="Ex: sem cebola, hambúrguer mal passado">
+            </div>
+      <div class="flex items-center gap-2 justify-between">
+        <p class="font-bold text-lg">R$ ${burger.preco}</p>
+        <button class="bg-gray-900 px-7 rounded add-to-cart-btn" data-name="${burger.nome}" data-price="${burger.preco}" data-id="${burger.id}">
+          <i class="fa fa-cart-plus text-3xl"></i>
+        </button>
+      </div>
+  
     </div>
-
-  </div>
-`;
-      menuBurguer.appendChild(burgerItem);
-    });
+  `;
+        menuBurguer.appendChild(burgerItem);
+      });
+    }
   } catch (error) {
     console.error("Error fetching burguers", error);
   }
@@ -58,7 +60,7 @@ async function displayburguers() {
 
 async function displaycombos() {
   try {
-    const url = "https://deploy-node-uoxr.onrender.com/api/produtos";
+    const url = "https://deploy-node-uoxr.onrender.com/api/produtoscombos";
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -100,7 +102,7 @@ async function displaycombos() {
 
 async function displayporcoes() {
   try {
-    const url = "https://deploy-node-uoxr.onrender.com/api/produtos";
+    const url = "https://deploy-node-uoxr.onrender.com/api/produtosporcoes";
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -142,7 +144,7 @@ async function displayporcoes() {
 
 async function displaybebidas() {
   try {
-    const url = "https://deploy-node-uoxr.onrender.com/api/produtos";
+    const url = "https://deploy-node-uoxr.onrender.com/api/produtosbebidas";
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -182,13 +184,10 @@ async function displaybebidas() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", displayburguers);
-
-document.addEventListener("DOMContentLoaded", displaycombos);
-
-document.addEventListener("DOMContentLoaded", displayporcoes);
-
-document.addEventListener("DOMContentLoaded", displaybebidas);
+displayburguers();
+displaycombos();
+displayporcoes();
+displaybebidas();
 
 // abrir carrinho
 cartBtn.addEventListener("click", function () {
