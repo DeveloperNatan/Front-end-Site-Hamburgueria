@@ -14,7 +14,7 @@ const nomeinput = document.getElementById("nomeinput");
 const cartobservation = document.getElementById("cart-observation");
 let cart = [];
 
-async function displayburguers() {
+async function FetchApiDisplayProducts() {
   try {
     const url = "https://deploy-node-uoxr.onrender.com/api/produtos";
     const response = await fetch(url);
@@ -22,172 +22,56 @@ async function displayburguers() {
     if (!response.ok) {
       throw new Error(`API request failed, status: ${response.status}`);
     }
-    const Burguers = await response.json();
+    const produtos = await response.json();
 
     const menuBurguer = document.getElementById("menu-burguers");
-
-    if (Burguers.categoria = "burger") {
-      Burguers.forEach((burger) => {
-        const burgerItem = document.createElement("div");
-        burgerItem.className = "flex gap-2";
-
-        burgerItem.innerHTML = `
-    <div class="w-full ">
-      <img src="./assets/hamb-2.png" alt="${burger.nome}"
-        class="img-custom-size-burguer rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-      <p class="font-bold">${burger.nome}</p>
-      <p class="text-sm">${burger.descricao}</p>
-      <div class="flex flex-col mt-auto" id="obs">
-              <label for="cart-observation-${burger.id}" class="font-bold text-red-600" id="label-obs">Observação:</label>
-              <input type="text" id="cart-observation-${burger.id}" name="observation" placeholder="Ex: sem cebola, hambúrguer mal passado">
-            </div>
-      <div class="flex items-center gap-2 justify-between">
-        <p class="font-bold text-lg">R$ ${burger.preco}</p>
-        <button class="bg-gray-900 px-7 rounded add-to-cart-btn" data-name="${burger.nome}" data-price="${burger.preco}" data-id="${burger.id}">
-          <i class="fa fa-cart-plus text-3xl"></i>
-        </button>
-      </div>
-  
-    </div>
-  `;
-        menuBurguer.appendChild(burgerItem);
-      });
-    }
-  } catch (error) {
-    console.error("Error fetching burguers", error);
-  }
-}
-
-async function displaycombos() {
-  try {
-    const url = "https://deploy-node-uoxr.onrender.com/api/produtoscombos";
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`API request failed, status: ${response.status}`);
-    }
-    const combos = await response.json();
-
-    const menucombos = document.getElementById("menu-combos");
-
-    combos.forEach((combos) => {
-      const CombosItem = document.createElement("div");
-      CombosItem.className = "flex gap-2";
-
-      CombosItem.innerHTML = `
-  <div class="w-full ">
-    <img src="./assets/combo.jpeg" alt="${combos.nome}"
-      class="img-custom-size-burguer rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-    <p class="font-bold">${combos.nome}</p>
-    <p class="text-sm">${combos.descricao}</p>
-    <div class="flex flex-col mt-auto" id="obs">
-            <label for="cart-observation-${combos.id}" class="font-bold text-red-600" id="label-obs">Observação:</label>
-            <input type="text" id="cart-observation-${combos.id}" name="observation" placeholder="Ex: sem cebola, hambúrguer mal passado">
-          </div>
-    <div class="flex items-center gap-2 justify-between">
-      <p class="font-bold text-lg">R$ ${combos.preco}</p>
-      <button class="bg-gray-900 px-7 rounded add-to-cart-btn" data-name="${combos.nome}" data-price="${combos.preco}" data-id="${combos.id}">
-        <i class="fa fa-cart-plus text-3xl"></i>
-      </button>
-    </div>
-
-  </div>
-`;
-      menucombos.appendChild(CombosItem);
-    });
-  } catch (error) {
-    console.error("Error fetching burguers", error);
-  }
-}
-
-async function displayporcoes() {
-  try {
-    const url = "https://deploy-node-uoxr.onrender.com/api/produtosporcoes";
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`API request failed, status: ${response.status}`);
-    }
-    const porcoes = await response.json();
-
-    const menuporcoes = document.getElementById("menu-porcoes");
-
-    porcoes.forEach((porcoes) => {
-      const PorcoesItem = document.createElement("div");
-      PorcoesItem.className = "flex gap-2";
-
-      PorcoesItem.innerHTML = `
-  <div class="w-full ">
-    <img src="./assets/porcao.jpg" alt="${porcoes.nome}"
-      class="img-custom-size-burguer rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-    <p class="font-bold">${porcoes.nome}</p>
-    <p class="text-sm">${porcoes.descricao}</p>
-    <div class="flex flex-col mt-auto" id="obs">
-            <label for="cart-observation-${porcoes.id}" class="font-bold text-red-600" id="label-obs">Observação:</label>
-            <input type="text" id="cart-observation-${porcoes.id}" name="observation" placeholder="Ex: sem cebola, hambúrguer mal passado">
-          </div>
-    <div class="flex items-center gap-2 justify-between">
-      <p class="font-bold text-lg">R$ ${porcoes.preco}</p>
-      <button class="bg-gray-900 px-7 rounded add-to-cart-btn" data-name="${porcoes.nome}" data-price="${porcoes.preco}" data-id="${porcoes.id}">
-        <i class="fa fa-cart-plus text-3xl"></i>
-      </button>
-    </div>
-
-  </div>
-`;
-      menuporcoes.appendChild(PorcoesItem);
-    });
-  } catch (error) {
-    console.error("Error fetching burguers", error);
-  }
-}
-
-async function displaybebidas() {
-  try {
-    const url = "https://deploy-node-uoxr.onrender.com/api/produtosbebidas";
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`API request failed, status: ${response.status}`);
-    }
-
-    const bebidas = await response.json();
-
+    const menuCombos = document.getElementById("menu-combos");
+    const menuPorcoes = document.getElementById("menu-porcoes");
     const menuBebidas = document.getElementById("menu-bebidas");
 
-    bebidas.forEach((bebidas) => {
-      const bebidaItem = document.createElement("div");
-      bebidaItem.className = "flex gap-2";
+    produtos.forEach((produtos) => {
+      const produtosItem = document.createElement("div");
+      produtosItem.className = "flex gap-2";
 
-      bebidaItem.innerHTML = `
+      produtosItem.innerHTML = `
       <div class="w-full ">
-        <img src="./assets/refri-8.png" alt="${bebidas.nome}"
-          class="img-custom-size rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <p class="font-bold">${bebidas.nome}</p>
-        <div class="hidden mt-auto" id="obs">
-                <label for="cart-observation-${bebidas.id}" class="font-bold text-red-600" id="label-obs">Observação:</label>
-                <input type="text" id="cart-observation-${bebidas.id}" name="observation" hidden>
+        <img src="./assets/hamb-2.png" alt="${burger.nome}"
+          class="img-custom-size-burguer rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
+        <p class="font-bold">${burger.nome}</p>
+        <p class="text-sm">${burger.descricao}</p>
+        <div class="flex flex-col mt-auto" id="obs">
+                <label for="cart-observation-${burger.id}" class="font-bold text-red-600" id="label-obs">Observação:</label>
+                <input type="text" id="cart-observation-${burger.id}" name="observation" placeholder="Ex: sem cebola, hambúrguer mal passado">
               </div>
         <div class="flex items-center gap-2 justify-between">
-          <p class="font-bold text-lg">R$ ${bebidas.preco}</p>
-          <button class="bg-gray-900 px-7 rounded add-to-cart-btn" data-name="${bebidas.nome}" data-price="${bebidas.preco}" data-id="${bebidas.id}">
+          <p class="font-bold text-lg">R$ ${burger.preco}</p>
+          <button class="bg-gray-900 px-7 rounded add-to-cart-btn" data-name="${burger.nome}" data-price="${burger.preco}" data-id="${burger.id}">
             <i class="fa fa-cart-plus text-3xl"></i>
           </button>
         </div>
     
       </div>
     `;
-      menuBebidas.appendChild(bebidaItem);
+
+      switch (produtos.categoria) {
+        case "burger":
+          menuBurguer.appendChild(produtosItem);
+          break;
+        case "bebidas":
+          menuBebidas.appendChild(produtosItem);
+          break;
+        case "combo":
+          menuCombos.appendChild(produtosItem);
+          break;
+        case "porcoes":
+          menuPorcoes.appendChild(produtosItem);
+          break;
+      }
     });
   } catch (error) {
-    console.error("Error fetching bebidas", error);
+    console.error("Error fetching products", error);
   }
 }
-
-displayburguers();
-displaycombos();
-displayporcoes();
-displaybebidas();
 
 // abrir carrinho
 cartBtn.addEventListener("click", function () {
@@ -447,3 +331,5 @@ if (spanItem) {
     spanItem.classList.add("bg-red-600");
   }
 }
+
+FetchApiDisplayProducts();
