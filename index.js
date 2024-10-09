@@ -35,17 +35,17 @@ async function FetchApiDisplayProducts() {
 
       produtosItem.innerHTML = `
       <div class="w-full ">
-        <img src="./assets/hamb-2.png" alt="${burger.nome}"
+        <img src="./assets/hamb-2.png" alt="${produtos.nome}"
           class="img-custom-size-burguer rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
-        <p class="font-bold">${burger.nome}</p>
-        <p class="text-sm">${burger.descricao}</p>
+        <p class="font-bold">${produtos.nome}</p>
+        <p class="text-sm">${produtos.descricao}</p>
         <div class="flex flex-col mt-auto" id="obs">
-                <label for="cart-observation-${burger.id}" class="font-bold text-red-600" id="label-obs">Observação:</label>
-                <input type="text" id="cart-observation-${burger.id}" name="observation" placeholder="Ex: sem cebola, hambúrguer mal passado">
+                <label for="cart-observation-${produtos.id}" class="font-bold text-red-600" id="label-obs">Observação:</label>
+                <input type="text" id="cart-observation-${produtos.id}" name="observation" placeholder="Ex: sem cebola, hambúrguer mal passado">
               </div>
         <div class="flex items-center gap-2 justify-between">
-          <p class="font-bold text-lg">R$ ${burger.preco}</p>
-          <button class="bg-gray-900 px-7 rounded add-to-cart-btn" data-name="${burger.nome}" data-price="${burger.preco}" data-id="${burger.id}">
+          <p class="font-bold text-lg">R$ ${produtos.preco}</p>
+          <button class="bg-gray-900 px-7 rounded add-to-cart-btn" data-name="${produtos.nome}" data-price="${produtos.preco}" data-id="${produtos.id}">
             <i class="fa fa-cart-plus text-3xl"></i>
           </button>
         </div>
@@ -57,7 +57,7 @@ async function FetchApiDisplayProducts() {
         case "burger":
           menuBurguer.appendChild(produtosItem);
           break;
-        case "bebidas":
+        case "bebida":
           menuBebidas.appendChild(produtosItem);
           break;
         case "combo":
