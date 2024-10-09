@@ -35,7 +35,7 @@ async function FetchApiDisplayProducts() {
 
       produtosItem.innerHTML = `
       <div class="w-full ">
-        <img src="./assets/hamb-2.png" alt="${produtos.nome}"
+        <img src="./assets/${produtos.categoria}.png" alt="${produtos.nome}"
           class="img-custom-size-burguer rounded-md hover:scale-110 hover:-rotate-2 duration-300" />
         <p class="font-bold">${produtos.nome}</p>
         <p class="text-sm">${produtos.descricao}</p>
